@@ -89,6 +89,19 @@ namespace BeatSaberPlaylistsLib
         /// <returns></returns>
         public static Stream? GetStreamFromBeatmap(BeatSaber::BeatmapLevel? previewBeatmapLevel)
         {
+            if (previewBeatmapLevel is { hasPrecalculatedData: false })
+            {
+                var standardLevelInfoSaveData = SongCore.Collections.GetStandardLevelInfoSaveData(previewBeatmapLevel.levelID);
+                if (standardLevelInfoSaveData != null)
+                {
+                    var fileName = standardLevelInfoSaveData.coverImageFilename;
+                    var customLevelPath = SongCore.Collections.GetCustomLevelPath(previewBeatmapLevel.levelID);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        return new FileStream(Path.Combine(customLevelPath, fileName), FileMode.Open, FileAccess.Read, FileShare.Read, 0x4096, true);
+                    }
+                }
+            }
             return GetDefaultImageStream();
         }
 
