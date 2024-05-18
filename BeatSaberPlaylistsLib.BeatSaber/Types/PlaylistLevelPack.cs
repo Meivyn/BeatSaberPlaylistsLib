@@ -1,4 +1,5 @@
 ﻿extern alias BeatSaber;
+using System.Text.RegularExpressions;
 
 namespace BeatSaberPlaylistsLib.Types
 {
@@ -13,7 +14,7 @@ namespace BeatSaberPlaylistsLib.Types
         public IPlaylist playlist { get; }
 
         internal PlaylistLevelPack(IPlaylist playlist)
-            : base(playlist.ID, playlist.Title, playlist.Title, playlist.Sprite, playlist.SmallSprite, playlist.BeatmapLevels, BeatSaber::PlayerSensitivityFlag.Unknown)
+            : base(playlist.ID, Regex.Replace(playlist.Title, @"\t|\n|\r", " "), Regex.Replace(playlist.Title, @"\t|\n|\r", " "), playlist.Sprite, playlist.SmallSprite, playlist.BeatmapLevels, BeatSaber::PlayerSensitivityFlag.Unknown)
         {
             this.playlist = playlist;
         }
