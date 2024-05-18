@@ -8,30 +8,25 @@ namespace BeatSaberPlaylistsLib.Types
     public abstract partial class PlaylistSong : IPlaylistSong
     {
         [NonSerialized]
-        private PlaylistLevel? beatmapLevel;
+        private BeatSaber::BeatmapLevel? _beatmapLevel;
 
         ///<inheritdoc/>
         [IgnoreDataMember]
-        public PlaylistLevel? BeatmapLevel
+        public BeatSaber::BeatmapLevel? BeatmapLevel
         {
             get
             {
-                if (beatmapLevel != null)
-                    return beatmapLevel;
+                if (_beatmapLevel != null)
+                    return _beatmapLevel;
 
                 if (LevelId == null || LevelId.Length == 0)
                     return null;
 
-                var songcoreLevel = SongCore.Loader.GetLevelById(LevelId);
-
-                if (songcoreLevel != null)
-                {
-                    beatmapLevel = new PlaylistLevel(this, songcoreLevel);
-                }
-
-                return beatmapLevel;
+                var beatmapLevel = SongCore.Loader.GetLevelById(LevelId);
+                _beatmapLevel = beatmapLevel != null ? new PlaylistLevel(this, beatmapLevel) : null;
+                return _beatmapLevel;
             }
-            set => beatmapLevel = value != null ? new PlaylistLevel(this, value) : null;
+            internal set => _beatmapLevel = value != null ? new PlaylistLevel(this, value) : null;
         }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -39,7 +34,7 @@ namespace BeatSaberPlaylistsLib.Types
         {
             if (LevelId != null && LevelId.Length > 0)
             {
-                BeatmapLevel = (PlaylistLevel?)SongCore.Loader.GetLevelById(LevelId);
+                BeatmapLevel = SongCore.Loader.GetLevelById(LevelId);
             }
         }
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
