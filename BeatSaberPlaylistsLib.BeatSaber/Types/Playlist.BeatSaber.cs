@@ -234,7 +234,7 @@ namespace BeatSaberPlaylistsLib.Types
             if (beatmapLevel == null)
                 return null;
 
-            IPlaylistSong? song = Add((ISong)CreateFromByLevelId(beatmapLevel.levelID, beatmapLevel.songName, null, string.Join(", ", beatmapLevel.allMappers.Concat(beatmapLevel.allLighters))));
+            IPlaylistSong? song = Add((ISong)CreateFromByLevelId(beatmapLevel.levelID, beatmapLevel.songName, null, string.Join(", ", beatmapLevel.allMappers.Concat(beatmapLevel.allLighters).Distinct())));
 
             if (song != null && beatmapKey != null)
             {
