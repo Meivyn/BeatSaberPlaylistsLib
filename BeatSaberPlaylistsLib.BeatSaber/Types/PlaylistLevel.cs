@@ -8,7 +8,7 @@ namespace BeatSaberPlaylistsLib.Types
     public class PlaylistLevel : BeatSaber::BeatmapLevel
     {
         /// <summary>
-        /// The <see cref="IPlaylistSong"/> assoicated with this level.
+        /// The <see cref="IPlaylistSong"/> associated with this level.
         /// </summary>
         public IPlaylistSong playlistSong { get; }
 

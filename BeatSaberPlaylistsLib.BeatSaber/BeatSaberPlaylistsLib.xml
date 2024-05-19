@@ -307,7 +307,7 @@
         </member>
         <member name="P:BeatSaberPlaylistsLib.Types.ISong.BeatmapLevel">
             <summary>
-            The <see cref="T:BeatmapLevel"/> this playlist song is matched to, if any.
+            The <see cref="T:BeatSaberPlaylistsLib.Types.PlaylistLevel"/> (cast as <see cref="T:BeatmapLevel"/>) this playlist song is matched to, if any.
             Depends on SongCore being finished loading songs.
             </summary>
         </member>
@@ -642,7 +642,7 @@
         </member>
         <member name="P:BeatSaberPlaylistsLib.Types.PlaylistLevel.playlistSong">
             <summary>
-            The <see cref="T:BeatSaberPlaylistsLib.Types.IPlaylistSong"/> assoicated with this level.
+            The <see cref="T:BeatSaberPlaylistsLib.Types.IPlaylistSong"/> associated with this level.
             </summary>
         </member>
         <member name="T:BeatSaberPlaylistsLib.Types.PlaylistLevelPack">
