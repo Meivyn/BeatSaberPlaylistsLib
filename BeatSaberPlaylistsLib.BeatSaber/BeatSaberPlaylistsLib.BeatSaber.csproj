@@ -8,7 +8,7 @@
     <DefineConstants>BeatSaber</DefineConstants>
     <BeatSaberRelease>True</BeatSaberRelease>
     <TargetFramework>net48</TargetFramework>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>Enable</Nullable>
     <Configurations>Debug-BeatSaber;Release-BeatSaber</Configurations>
     <LocalRefsDir Condition="Exists('..\Refs')">..\Refs</LocalRefsDir>
@@ -110,7 +110,7 @@
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="BeforeBuild" Condition="'$(NCRUNCH)' != '1'">
     <Error Text="The BeatSaberModdingTools.Tasks nuget package doesn't seem to be installed." Condition="'$(BSMTTaskAssembly)' == ''" />
-    
+
     <GetCommitInfo ProjectDir="$(ProjectDir)">
       <Output TaskParameter="CommitHash" PropertyName="CommitHash" />
       <Output TaskParameter="Branch" PropertyName="GitBranch" />
