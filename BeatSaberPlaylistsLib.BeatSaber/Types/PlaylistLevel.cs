@@ -1,5 +1,7 @@
 ﻿extern alias BeatSaber;
 
+using System.Linq;
+
 namespace BeatSaberPlaylistsLib.Types
 {
     /// <summary>
@@ -13,7 +15,7 @@ namespace BeatSaberPlaylistsLib.Types
         public IPlaylistSong playlistSong { get; }
 
         internal PlaylistLevel(IPlaylistSong playlistSong, BeatSaber::BeatmapLevel beatmapLevel)
-            : base(beatmapLevel.version, beatmapLevel.hasPrecalculatedData, beatmapLevel.levelID, beatmapLevel.songName, beatmapLevel.songSubName, beatmapLevel.songAuthorName, beatmapLevel.allMappers, beatmapLevel.allLighters, beatmapLevel.beatsPerMinute, beatmapLevel.integratedLufs, beatmapLevel.songTimeOffset, beatmapLevel.previewStartTime, beatmapLevel.previewDuration, beatmapLevel.songDuration, beatmapLevel.contentRating, beatmapLevel.previewMediaData, beatmapLevel.beatmapBasicData)
+            : base(beatmapLevel.version, beatmapLevel.hasPrecalculatedData, beatmapLevel.levelID, beatmapLevel.songName, beatmapLevel.songSubName, beatmapLevel.songAuthorName, beatmapLevel.allMappers, beatmapLevel.allLighters, beatmapLevel.beatsPerMinute, beatmapLevel.integratedLufs, beatmapLevel.songTimeOffset, beatmapLevel.previewStartTime, beatmapLevel.previewDuration, beatmapLevel.songDuration, beatmapLevel.contentRating, beatmapLevel.previewMediaData, beatmapLevel.beatmapBasicData.ToDictionary(pair => pair.Key, pair => pair.Value))
         {
             this.playlistSong = playlistSong;
         }
