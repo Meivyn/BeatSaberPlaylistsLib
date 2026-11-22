@@ -240,7 +240,7 @@ namespace BeatSaberPlaylistsLib.Types
             {
                 Difficulty difficulty = new Difficulty() {
                     BeatmapDifficulty = beatmapKey.Value.difficulty,
-                    Characteristic = beatmapKey.Value.beatmapCharacteristic.serializedName,
+                    Characteristic = BeatSaber::BeatmapCharacteristicExtensions.SerializedName(beatmapKey.Value.characteristic),
                 };
                 song.Difficulties = new List<Difficulty> { difficulty };
             }
